@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AyraSoft | Digital Realities</title>
+    <title>AyraSoft | Digital Architects</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -14,7 +14,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
@@ -22,14 +22,17 @@
                 extend: {
                     colors: {
                         brand: {
-                            dark: '#050505',
-                            accent: '#00f0ff', // Cyan
-                            purple: '#7000ff', // Electric Purple
+                            black: '#111111',
+                            gray: '#F5F5F7',
+                            accent: '#007AFF',
                         }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(0, 0, 0, 0.05)',
                     }
                 }
             }
@@ -38,36 +41,16 @@
 
     <style>
         body {
-            background-color: #050505;
+            background-color: #ffffff;
+            color: #111111;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
         
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #050505;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #333;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #00f0ff;
-        }
-
-        /* Glassmorphism Utilities */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        
-        .text-glow {
-            text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-        }
+        /* Minimalist Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #ffffff; }
+        ::-webkit-scrollbar-thumb { background: #e5e5e5; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #007AFF; }
 
         /* 3D Canvas positioning */
         #canvas-container {
@@ -77,98 +60,188 @@
             width: 100%;
             height: 100vh;
             z-index: -1;
-            opacity: 0.6;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        .hover-underline-animation {
+            display: inline-block;
+            position: relative;
+        }
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 1px;
+            bottom: 0;
+            left: 0;
+            background-color: #000;
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        /* Typewriter Cursor Effect */
+        .cursor-blink {
+            display: inline-block;
+            width: 3px;
+            background-color: #000;
+            animation: blink 1s step-end infinite;
+            vertical-align: middle;
+            height: 1em; 
+            margin-left: 5px;
+        }
+
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
-<body class="text-white antialiased selection:bg-brand-accent selection:text-black">
+<body class="antialiased selection:bg-black selection:text-white">
 
     <div id="canvas-container"></div>
 
-    <nav class="fixed w-full z-50 top-0 left-0 border-b border-white/10 glass-panel">
-    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        
-        <a href="#" class="font-mono text-2xl font-bold tracking-tighter">
-            AYRA<span class="text-brand-accent">SOFT</span>
-        </a>
+    <nav class="fixed w-full z-50 top-0 left-0 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            
+            <a href="#" class="font-mono text-xl font-bold tracking-tighter text-black flex items-center gap-2">
+                <div class="w-3 h-3 bg-black rounded-full"></div>
+                AYRASOFT
+            </a>
 
-        <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-300">
-            <a href="#services" class="hover:text-white transition-colors">Services</a>
-            <a href="#products" class="hover:text-white transition-colors">Products</a>
-            <a href="#about" class="hover:text-white transition-colors">About</a>
-            <a href="#contact" class="hover:text-brand-accent transition-colors">Contact</a>
+            <div class="hidden md:flex space-x-10 text-sm font-medium text-gray-500">
+                <a href="#services" class="hover:text-black transition-colors hover-underline-animation">Services</a>
+                <a href="#products" class="hover:text-black transition-colors hover-underline-animation">Portfolio</a>
+                <a href="#about" class="hover:text-black transition-colors hover-underline-animation">About</a>
+                <a href="#contact" class="hover:text-black transition-colors hover-underline-animation">Contact</a>
+            </div>
+
+            <a href="https://wa.me/917306201272" 
+               target="_blank" 
+               class="hidden md:block px-6 py-2.5 bg-black text-white rounded-full hover:bg-brand-accent hover:scale-105 transition-all duration-300 text-sm font-medium shadow-lg shadow-black/10">
+                Let's Talk
+            </a>
+
+            <button id="mobile-menu-btn" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
+                <span class="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+                <span class="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+                <span class="block w-6 h-0.5 bg-black transition-all duration-300"></span>
+            </button>
         </div>
 
-        <a href="https://wa.me/917306201272?text=Hi,%20I%20would%20like%20to%20make%20an%20enquiry" 
-           target="_blank" 
-           class="hidden md:block px-6 py-2 border border-brand-accent/50 text-brand-accent rounded-full hover:bg-brand-accent hover:text-black transition-all duration-300 text-sm font-mono text-center pt-2">
-            Contact Us
-        </a>
-        
-    </div>
-</nav>
+        <div id="mobile-menu" class="hidden absolute top-20 left-0 w-full bg-white border-b border-gray-100 p-6 flex-col space-y-4 md:hidden shadow-xl">
+            <a href="#services" class="text-lg font-medium text-black">Services</a>
+            <a href="#products" class="text-lg font-medium text-black">Work</a>
+            <a href="#about" class="text-lg font-medium text-black">About</a>
+            <a href="#contact" class="text-lg font-medium text-black">Contact</a>
+            <hr class="border-gray-100">
+            <a href="https://wa.me/917306201272" target="_blank" class="block w-full text-center px-6 py-3 bg-black text-white rounded-full font-medium">
+                Let's Talk
+            </a>
+        </div>
+    </nav>
 
-    <header id="about" class="relative h-screen flex items-center justify-center px-6">
-        <div class="text-center z-10 max-w-4xl">
-            <div class="gsap-hero opacity-0 translate-y-10 inline-block px-3 py-1 mb-6 border border-brand-purple/50 rounded-full bg-brand-purple/10 text-brand-purple font-mono text-xs">
-                
-            </div>
-            <h1 class="gsap-hero opacity-0 translate-y-10 text-6xl md:text-8xl font-bold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-200 to-gray-500">
-                Design Beyond <br/> Dimensions.
+    <header id="about" class="relative min-h-screen flex items-center justify-center px-6 pt-24 md:pt-20">
+        <div class="text-center z-10 max-w-5xl">
+
+            <h1 class="gsap-hero opacity-0 translate-y-10 text-5xl md:text-8xl lg:text-9xl font-black tracking-tighter mb-8 text-black leading-none md:leading-[0.9]">
+                DIGITAL <br/> REALITIES.
             </h1>
-            <p class="gsap-hero opacity-0 translate-y-10 text-gray-400 text-lg md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed">
-                We forge immersive 3D experiences, custom web applications, and desktop software that define the future of interaction.
+            
+            <p class="gsap-hero opacity-0 translate-y-10 text-gray-500 text-lg md:text-xl max-w-2xl mx-auto mb-12 font-light leading-relaxed">
+                We bridge the gap between imagination and engineering. 
+                <span class="text-black font-medium">Immersive 3D, Web Apps, and Desktop Software.</span>
             </p>
-            <div class="gsap-hero opacity-0 translate-y-10 flex flex-col md:flex-row gap-4 justify-center">
-                
-                <a href="#services" class="px-8 py-4 glass-panel border border-white/10 rounded-full font-bold hover:border-white transition-colors duration-300 inline-block">
-                    Our Services
+            
+            <div class="gsap-hero opacity-0 translate-y-10 flex flex-col md:flex-row gap-4 justify-center items-center">
+                <a href="#products" class="group relative px-8 py-4 bg-black text-white rounded-full font-medium overflow-hidden w-full md:w-auto">
+                    <div class="absolute inset-0 w-full h-full bg-brand-accent transition-all duration-300 translate-y-full group-hover:translate-y-0"></div>
+                    <span class="relative z-10 flex items-center justify-center gap-2">
+                        View Work 
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </span>
                 </a>
-
+                <a href="#services" class="px-8 py-4 text-black hover:text-brand-accent font-medium transition-colors w-full md:w-auto">
+                    Explore Services
+                </a>
             </div>
-        </div>
-        
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
         </div>
     </header>
 
-    <section id="services" class="py-32 px-6 bg-black/50 backdrop-blur-sm border-t border-white/5">
+    <section id="services" class="py-24 md:py-32 px-6 bg-brand-gray border-t border-gray-200">
         <div class="max-w-7xl mx-auto">
-            <div class="mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-4">Our Expertise</h2>
-                <div class="h-1 w-20 bg-brand-accent"></div>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 md:mb-20 gap-6">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-bold tracking-tight mb-2">Services</h2>
+                    <p class="text-gray-500">Tailored digital solutions.</p>
+                </div>
+                <div class="hidden md:block h-px bg-gray-300 flex-grow md:max-w-md ml-8"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <a href="#products" class="service-card block glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group cursor-pointer">
-                    <div class="w-12 h-12 bg-brand-accent/10 rounded-lg flex items-center justify-center mb-6 text-brand-accent group-hover:bg-brand-accent group-hover:text-black transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path></svg>
                     </div>
-                    <h3 class="text-xl font-bold mb-3">2D & 3D Design</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        From UI/UX prototypes to immersive WebGL experiences. We bring depth to flat screens using tools like Blender and Three.js.
+                    <h3 class="text-xl font-bold mb-3">3D & WebGL</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Depth in a flat world. We utilize Blender and Three.js to build immersive web experiences that captivate users.
                     </p>
                 </a>
 
-                <a href="#products" class="service-card block glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group cursor-pointer">
-                    <div class="w-12 h-12 bg-brand-purple/10 rounded-lg flex items-center justify-center mb-6 text-brand-purple group-hover:bg-brand-purple group-hover:text-white transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Custom Web Apps</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Scalable, high-performance web applications built on React and Next.js tailored to your specific business logic.
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Performance meets aesthetics. Scalable applications built on React and Next.js, tailored to your business logic.
                     </p>
                 </a>
 
-                <a href="#products" class="service-card block glass-panel p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 group cursor-pointer">
-                    <div class="w-12 h-12 bg-green-500/10 rounded-lg flex items-center justify-center mb-6 text-green-400 group-hover:bg-green-500 group-hover:text-black transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                     </div>
                     <h3 class="text-xl font-bold mb-3">Desktop Software</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed">
-                        Native performance for heavy-duty tasks. We build cross-platform desktop solutions using Electron and Tauri.
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Native power. Cross-platform desktop solutions using Electron and Tauri for heavy-duty operational tasks.
+                    </p>
+                </a>
+                
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Search Engine Optimization</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Rise to the top. We implement data-driven SEO strategies to boost your visibility, rank higher, and drive organic traffic to your business.
+                    </p>
+                </a>
+
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">E-commerce Application</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Sell smarter. Scalable online stores with secure payment gateways, inventory management, and intuitive UX to convert visitors into customers.
+                    </p>
+                </a>
+
+                <a href="#products" class="service-card group block p-8 bg-white rounded-2xl border border-gray-100 shadow-soft hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+                    <div class="w-12 h-12 bg-gray-50 rounded-lg flex items-center justify-center mb-8 group-hover:bg-black group-hover:text-white transition-colors duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0c0 .884-.5 2-2 2h4c-1.5 0-2-1.116-2-2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Personal Portfolio</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Showcase your identity. Custom-designed, high-performance portfolios that tell your professional story and leave a lasting impression.
                     </p>
                 </a>
 
@@ -176,61 +249,62 @@
         </div>
     </section>
 
-    <section id="products" class="w-full bg-black py-12 px-4 md:px-8">
-        <div class="max-w-6xl mx-auto">
+    <section id="products" class="w-full bg-white py-24 px-4 md:px-8">
+        <div class="max-w-7xl mx-auto">
             
-            <div class="mb-12">
-                <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Our Works</h2>
-                <div class="h-1 w-20 bg-brand-accent rounded-full"></div>
+            <div class="mb-12 md:mb-16 min-h-[120px]">
+                <span class="font-mono text-xs font-bold text-gray-400 uppercase tracking-widest">Our Portfolio</span>
+                <h2 id="typewriter-text" class="text-4xl md:text-6xl font-black text-black mt-2 leading-tight">
+                    </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 
-                <div class="flex flex-col gap-6">
-                    
-                    <h3 class="text-2xl font-mono font-bold text-gray-200">Website Designs</h3>
+                <div class="flex flex-col gap-10">
+                    <h3 class="text-xl font-mono font-bold text-black border-b border-gray-100 pb-4">Web Design</h3>
 
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 group">
-                        <iframe src="https://drive.google.com/file/d/1CXdtBdNndDrq-cm4HDm2GypWszaIaLq4/preview" class="w-full aspect-video" style="border:none;"></iframe>
+                    <div class="group">
+                        <div class="relative rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50 transition-transform duration-500 hover:shadow-2xl">
+                            <iframe src="https://drive.google.com/file/d/1CXdtBdNndDrq-cm4HDm2GypWszaIaLq4/preview" class="w-full aspect-video transition-all duration-500" style="border:none;"></iframe>
+                        </div>
                     </div>
 
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 group">
-                         <iframe src="https://drive.google.com/file/d/11wB-AohWplUMOQN5R68XhNovFMgXfh3h/preview" class="w-full aspect-video" style="border:none;"></iframe>
+                    <div class="group">
+                        <div class="relative rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50 transition-transform duration-500 hover:shadow-2xl">
+                             <iframe src="https://drive.google.com/file/d/11wB-AohWplUMOQN5R68XhNovFMgXfh3h/preview" class="w-full aspect-video transition-all duration-500" style="border:none;"></iframe>
+                        </div>
                     </div>
 
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-white/5 group">
-                        <iframe src="https://drive.google.com/file/d/1_hvqQDsSV1PrNwjIXBQbKrFWODw_N1Yh/preview" class="w-full aspect-video" style="border:none;"></iframe>
+                    <div class="group">
+                        <div class="relative rounded-xl overflow-hidden shadow-lg border border-gray-100 bg-gray-50 transition-transform duration-500 hover:shadow-2xl">
+                            <iframe src="https://drive.google.com/file/d/1_hvqQDsSV1PrNwjIXBQbKrFWODw_N1Yh/preview" class="w-full aspect-video transition-all duration-500" style="border:none;"></iframe>
+                        </div>
                     </div>
-
                 </div>
 
                 <div class="flex flex-col h-full">
-                    
-                    <h3 class="text-2xl font-mono font-bold text-gray-200 mb-6">Custom Apps</h3>
+                    <h3 class="text-xl font-mono font-bold text-black border-b border-gray-100 pb-4 mb-6 md:mb-10">Application Development</h3>
 
-                    <div class="sticky top-8 border border-white/10 bg-neutral-900 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
+                    <div class="md:sticky md:top-24 bg-white border border-gray-100 rounded-3xl overflow-hidden shadow-2xl flex flex-col group">
                         
-                        <div class="w-full bg-black border-b border-white/5">
-                             <iframe src="https://drive.google.com/file/d/1P645FIjCcwp6w8QC3Wt6g6dd2A7gtQ5Z/preview" class="w-full aspect-video" style="border:none;"></iframe>
+                        <div class="w-full bg-gray-50 border-b border-gray-100">
+                             <iframe src="https://drive.google.com/file/d/1P645FIjCcwp6w8QC3Wt6g6dd2A7gtQ5Z/preview" class="w-full aspect-video transition-all duration-500" style="border:none;"></iframe>
                         </div>
                         
                         <div class="p-6 md:p-8">
-                            
-                            <div class="flex items-center gap-3 mb-4">
-                                <div class="inline-block px-2 py-1 border border-purple-500/50 rounded text-[10px] font-mono text-purple-400 tracking-widest bg-purple-500/10">
-                                    DENTAL SUITE
-                                </div>
-                                <div class="flex items-center gap-1 px-2 py-1 bg-green-500/20 border border-green-500/30 rounded text-[10px] text-green-400 font-bold">
-                                    <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                                    WHATSAPP API
-                                </div>
+                            <div class="flex flex-wrap items-center gap-3 mb-6">
+                                <span class="px-3 py-1 bg-black text-white text-[10px] font-mono tracking-widest uppercase rounded-full">Dental Suite</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-700 border border-green-200 text-[10px] font-mono tracking-widest uppercase rounded-full flex items-center gap-1">
+                                    <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                    WhatsApp Integration
+                                </span>
                             </div>
 
-                            <h3 class="text-3xl font-bold text-white mb-3">DentOS</h3>
-                            <p class="text-gray-400 text-sm leading-relaxed">
-                                Revolutionizing dental practice management. DentOS offers seamless patient history tracking, automated billing, and smart WhatsApp integration for effortless appointment reminders.
+                            <h3 class="text-3xl font-bold text-black mb-3">DentOS</h3>
+                            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                                A revolutionary practice management system. Features seamless patient history tracking, automated billing, and a smart WhatsApp API for automated appointment reminders.
                             </p>
-
+                            
                         </div>
                     </div>
                 </div>
@@ -239,28 +313,27 @@
         </div>
     </section>
 
-    <section id="clients" class="py-24 bg-neutral-900 border-t border-white/5 relative">
+    <section id="clients" class="py-24 bg-gray-50 border-t border-gray-200">
         <div class="max-w-4xl mx-auto px-6 text-center">
             
             <div class="mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">Our Clients</h2>
-                <div class="h-1 w-16 bg-brand-accent mx-auto rounded-full"></div>
+                <h2 class="text-3xl font-bold text-black">Trusted Clients</h2>
             </div>
 
-            <div class="inline-flex flex-col items-center justify-center p-10 border border-white/10 bg-white/5 backdrop-blur-md rounded-3xl hover:border-brand-accent/50 hover:bg-white/10 transition-all duration-500 group cursor-default shadow-2xl">
+            <div class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 mx-4">
                 
-                <div class="w-32 h-32 mb-6 rounded-full bg-white flex items-center justify-center overflow-hidden shadow-[0_0_40px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-500">
-                    <img src="client1.png" alt="Madukkakuzhy Dental Care Logo" class="w-20 h-20 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                    <img src="client1.png" alt="Madukkakuzhy Dental Care Logo" class="w-16 h-16 object-contain mix-blend-multiply" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
                     
-                    <svg class="hidden w-12 h-12 text-neutral-800" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    <svg class="hidden w-10 h-10 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                 </div>
 
-                <h3 class="text-2xl md:text-3xl font-mono font-bold text-gray-200 group-hover:text-white transition-colors mb-2">
+                <h3 class="text-xl md:text-2xl font-serif font-bold text-black mb-2">
                     Madukkakuzhy Dental Care
                 </h3>
                 
-                <div class="px-3 py-1 border border-brand-accent/30 rounded-full bg-brand-accent/10">
-                    <p class="text-xs text-brand-accent tracking-widest uppercase font-bold">Healthcare Partner</p>
+                <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                    <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
                 </div>
 
             </div>
@@ -268,41 +341,63 @@
         </div>
     </section>
 
-    <footer id="contact" class="py-12 px-6 border-t border-white/10 bg-black">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer id="contact" class="py-16 px-6 bg-black text-white">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
             
-            <div class="text-center md:text-left">
-                <span class="text-2xl font-bold tracking-tighter text-white">AYRA<span class="text-brand-accent">SOFT</span></span>
-                <p class="text-gray-500 text-sm mt-2">© 2025 AyraSoft Inc. All rights reserved.</p>
+            <div>
+                <a href="#" class="text-3xl font-bold tracking-tighter text-white">AYRASOFT</a>
+                <p class="text-gray-400 text-sm mt-4 max-w-xs">
+                    Engineering the future of digital interaction. <br/>Kerala, India.
+                </p>
             </div>
 
-            <div class="flex flex-col items-center md:items-end gap-3">
+            <div class="flex flex-col md:items-end gap-4">
                 
-                <div class="flex space-x-6 text-sm font-medium text-gray-400">
-                    <a href="https://wa.me/917306201272" target="_blank" class="hover:text-brand-accent transition-colors">WhatsApp</a>
-                    <a href="https://www.instagram.com/ayrasoft/" target="_blank" class="hover:text-brand-purple transition-colors">Instagram</a>
+                <div class="flex space-x-8 text-sm font-medium text-gray-400">
+                    <a href="https://wa.me/917306201272" target="_blank" class="hover:text-white transition-colors">WhatsApp</a>
+                    <a href="https://www.instagram.com/ayrasoft/" target="_blank" class="hover:text-white transition-colors">Instagram</a>
                     <a href="mailto:ayrasoftglobal@gmail.com" class="hover:text-white transition-colors">Email</a>
                 </div>
 
-                <a href="tel:+917306201272" class="text-xs font-mono text-gray-600 hover:text-gray-300 transition-colors">
+                <a href="tel:+917306201272" class="text-2xl font-mono font-light text-white hover:text-gray-300 transition-colors">
                     +91 7306 201 272
                 </a>
-                
+                <a href="tel:+917306201272" class="text-2xl font-mono font-light text-white hover:text-gray-300 transition-colors">
+                    +91 6282 359 225
+                </a>
+
+                <p class="text-gray-600 text-xs mt-2">© 2025 AyraSoft Inc. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // --- 1. GSAP ANIMATIONS ---
+        // --- 1. MOBILE MENU LOGIC ---
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        });
+
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                menu.classList.remove('flex');
+            });
+        });
+
+        // --- 2. GSAP ANIMATIONS ---
         gsap.registerPlugin(ScrollTrigger);
 
         // Hero Stagger Animation
         gsap.to(".gsap-hero", {
             y: 0,
             opacity: 1,
-            duration: 1,
-            stagger: 0.2,
-            ease: "power3.out",
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power4.out",
             delay: 0.2
         });
 
@@ -311,73 +406,88 @@
             gsap.from(card, {
                 scrollTrigger: {
                     trigger: card,
-                    start: "top 85%",
+                    start: "top 90%",
                 },
-                y: 50,
+                y: 30,
                 opacity: 0,
-                duration: 0.8,
+                duration: 1,
+                ease: "power2.out",
                 delay: i * 0.1
             });
         });
 
-        // Projects Scale Up
-        gsap.utils.toArray('.project-card').forEach((card) => {
-            gsap.from(card, {
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top 80%",
-                },
-                scale: 0.95,
-                opacity: 0,
-                duration: 0.8,
-            });
+        // --- TYPEWRITER ANIMATION LOGIC ---
+        // This function triggers when the user scrolls to the #products section
+        const textToType = "Browse through our crafted experiences.";
+        const typewriterElement = document.getElementById("typewriter-text");
+        let isTyping = false;
+
+        ScrollTrigger.create({
+            trigger: "#products",
+            start: "top 60%", // Starts when top of section hits 60% of viewport
+            onEnter: () => {
+                if(!isTyping && typewriterElement.innerText === "") {
+                    isTyping = true;
+                    typeWriter(textToType, 0);
+                }
+            }
         });
 
-        // --- 2. THREE.JS BACKGROUND ---
+        function typeWriter(text, i) {
+            if (i < text.length) {
+                // Add character and keeping the cursor
+                typewriterElement.innerHTML = text.substring(0, i+1) + '<span class="cursor-blink"></span>';
+                setTimeout(function() {
+                    typeWriter(text, i + 1)
+                }, 50); // Adjust typing speed here (50ms)
+            } else {
+                // Keep cursor blinking at the end
+                typewriterElement.innerHTML = text + '<span class="cursor-blink"></span>';
+            }
+        }
+
+        // --- 3. THREE.JS BACKGROUND ---
         const scene = new THREE.Scene();
-        // Add some fog for depth
-        scene.fog = new THREE.FogExp2(0x050505, 0.002);
+        scene.background = new THREE.Color(0xffffff);
+        scene.fog = new THREE.FogExp2(0xffffff, 0.0035);
 
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); // Alpha true makes canvas transparent
+        const renderer = new THREE.WebGLRenderer({ alpha: false, antialias: true });
         
         renderer.setSize(window.innerWidth, window.innerHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
         document.getElementById('canvas-container').appendChild(renderer.domElement);
 
-        // Create Geometry (Wireframe Icosahedron)
-        const geometry = new THREE.IcosahedronGeometry(10, 2);
+        const geometry = new THREE.IcosahedronGeometry(12, 1);
         const material = new THREE.MeshBasicMaterial({ 
-            color: 0x00f0ff, 
+            color: 0x111111,
             wireframe: true,
             transparent: true,
-            opacity: 0.15
+            opacity: 0.05
         });
         const sphere = new THREE.Mesh(geometry, material);
         scene.add(sphere);
 
-        // Add Particles
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 700;
+        const particlesCount = 800;
         const posArray = new Float32Array(particlesCount * 3);
 
         for(let i = 0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 50; // Spread particles
+            posArray[i] = (Math.random() - 0.5) * 60;
         }
 
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         const particlesMaterial = new THREE.PointsMaterial({
             size: 0.05,
-            color: 0xffffff,
+            color: 0x000000,
             transparent: true,
-            opacity: 0.4
+            opacity: 0.2
         });
         const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
         scene.add(particlesMesh);
 
         camera.position.z = 20;
 
-        // Mouse Interaction
         let mouseX = 0;
         let mouseY = 0;
 
@@ -386,29 +496,20 @@
             mouseY = event.clientY / window.innerHeight - 0.5;
         });
 
-        // Animation Loop
         const animate = function () {
             requestAnimationFrame(animate);
-
-            // Rotate Main Sphere
-            sphere.rotation.y += 0.002;
-            sphere.rotation.x += 0.001;
-
-            // Rotate Particles
-            particlesMesh.rotation.y = -mouseX * 0.5;
-            particlesMesh.rotation.x = -mouseY * 0.5;
-
-            // Subtle Camera Movement based on mouse
-            camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
-            camera.position.y += (-mouseY * 2 - camera.position.y) * 0.05;
+            sphere.rotation.y += 0.001;
+            sphere.rotation.x += 0.0005;
+            particlesMesh.rotation.y = -mouseX * 0.2;
+            particlesMesh.rotation.x = -mouseY * 0.2;
+            camera.position.x += (mouseX * 1 - camera.position.x) * 0.05;
+            camera.position.y += (-mouseY * 1 - camera.position.y) * 0.05;
             camera.lookAt(scene.position);
-
             renderer.render(scene, camera);
         };
 
         animate();
 
-        // Handle Window Resize
         window.addEventListener('resize', () => {
             camera.aspect = window.innerWidth / window.innerHeight;
             camera.updateProjectionMatrix();
