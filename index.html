@@ -124,6 +124,29 @@
                 opacity: 0;
             }
         }
+
+        @keyframes marqueeRight {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            animation: marqueeRight 25s linear infinite;
+        }
+
+        .marquee-container:hover .marquee-content {
+            animation-play-state: paused;
+        }
     </style>
 </head>
 
@@ -435,94 +458,108 @@
         </div>
     </section>
 
-    <section id="clients" class="py-24 bg-gray-50 border-t border-gray-200">
-        <div class="max-w-4xl mx-auto px-6 text-center">
+    <section id="clients" class="py-24 bg-gray-50 border-t border-gray-200 overflow-hidden">
+        <div class="w-full text-center">
 
             <div class="mb-12">
                 <h2 class="text-3xl font-bold text-black">Trusted Clients</h2>
             </div>
 
-            <div class="flex flex-wrap justify-center gap-8">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <!-- First Set of Cards -->
+                    <!-- Card 1 -->
+                    <a href="https://madukkakuzhy.vercel.app" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                            <img src="madukkakuzhy.png" alt="Madukkakuzhy Dental Care Logo" class="w-16 h-16 object-contain mix-blend-multiply">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Madukkakuzhy Dental Care</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
+                    <!-- Card 2 -->
+                    <a href="https://www.endoroot.in" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                            <img src="endoroot.png" alt="Endoroot Dental Clinic Logo" class="w-16 h-16 object-contain mix-blend-multiply">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Endoroot Dental Clinic</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
+                    <!-- Card 3 -->
+                    <a href="https://play.google.com/store/apps/details?id=com.Ayeauto" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
+                            <img src="savaari.png" alt="Savaari Logo" class="absolute min-w-full min-h-full object-cover scale-110">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Savaari</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Mobility</p>
+                        </div>
+                    </a>
+                    <!-- Card 4 -->
+                    <a href="https://share.google/qV7Yg2mIwx0HDHgvs" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
+                            <img src="peoples.png" alt="People's Logo" class="absolute min-w-full min-h-full object-cover scale-110">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">People's Dental Care</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
 
-                <!-- Card 1 -->
-                <a href="https://madukkakuzhy.vercel.app" target="_blank"
-                    class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64">
-
-                    <div
-                        class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
-                        <img src="madukkakuzhy.png" alt="Madukkakuzhy Dental Care Logo"
-                            class="w-16 h-16 object-contain mix-blend-multiply">
-                    </div>
-
-                    <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">
-                        Madukkakuzhy Dental Care
-                    </h3>
-
-                    <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
-                        <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
-                    </div>
-                </a>
-
-                <!-- Card 2 -->
-                <a href="https://www.endoroot.in" target="_blank"
-                    class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64">
-
-                    <div
-                        class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
-                        <img src="endoroot.png" alt="Endoroot Dental Clinic Logo"
-                            class="w-16 h-16 object-contain mix-blend-multiply">
-                    </div>
-
-                    <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">
-                        Endoroot Dental Clinic
-                    </h3>
-
-                    <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
-                        <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
-                    </div>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="https://play.google.com/store/apps/details?id=com.Ayeauto" target="_blank"
-                    class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64">
-
-                    <div
-                        class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
-                        <img src="savaari.png" alt="Savaari Logo"
-                            class="absolute min-w-full min-h-full object-cover scale-110">
-                    </div>
-
-                    <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">
-                        Savaari
-                    </h3>
-
-                    <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
-                        <p class="text-xs tracking-widest uppercase font-bold">Mobility</p>
-                    </div>
-                </a>
-
-                <!-- Card 3 -->
-                <a href="https://share.google/qV7Yg2mIwx0HDHgvs" target="_blank"
-                    class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64">
-
-                    <div
-                        class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
-                        <img src="peoples.png" alt="People's  Logo"
-                            class="absolute min-w-full min-h-full object-cover scale-110">
-                    </div>
-
-                    <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">
-                        People's Dental Care
-                    </h3>
-
-                    <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
-                        <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
-                    </div>
-                </a>
-
+                    <!-- Second Set of Cards for infinite scroll -->
+                    <!-- Card 1 -->
+                    <a href="https://madukkakuzhy.vercel.app" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                            <img src="madukkakuzhy.png" alt="Madukkakuzhy Dental Care Logo" class="w-16 h-16 object-contain mix-blend-multiply">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Madukkakuzhy Dental Care</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
+                    <!-- Card 2 -->
+                    <a href="https://www.endoroot.in" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200">
+                            <img src="endoroot.png" alt="Endoroot Dental Clinic Logo" class="w-16 h-16 object-contain mix-blend-multiply">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Endoroot Dental Clinic</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
+                    <!-- Card 3 -->
+                    <a href="https://play.google.com/store/apps/details?id=com.Ayeauto" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
+                            <img src="savaari.png" alt="Savaari Logo" class="absolute min-w-full min-h-full object-cover scale-110">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">Savaari</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Mobility</p>
+                        </div>
+                    </a>
+                    <!-- Card 4 -->
+                    <a href="https://share.google/qV7Yg2mIwx0HDHgvs" target="_blank"
+                        class="inline-flex flex-col items-center justify-center p-8 md:p-12 bg-white rounded-3xl shadow-soft border border-gray-100 transition-transform duration-500 hover:scale-105 w-64 flex-shrink-0">
+                        <div class="w-24 h-24 mb-6 rounded-full bg-gray-100 flex items-center justify-center overflow-hidden border border-gray-200 relative">
+                            <img src="peoples.png" alt="People's Logo" class="absolute min-w-full min-h-full object-cover scale-110">
+                        </div>
+                        <h3 class="text-lg md:text-xl font-serif font-bold text-black mb-2 text-center">People's Dental Care</h3>
+                        <div class="px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 border border-blue-100">
+                            <p class="text-xs tracking-widest uppercase font-bold">Healthcare</p>
+                        </div>
+                    </a>
+                </div>
             </div>
-
-
 
         </div>
     </section>
@@ -706,26 +743,6 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
     </script>
-</body>
-
-.001;
-sphere.rotation.x += 0.0005;
-particlesMesh.rotation.y = -mouseX * 0.2;
-particlesMesh.rotation.x = -mouseY * 0.2;
-camera.position.x += (mouseX * 1 - camera.position.x) * 0.05;
-camera.position.y += (-mouseY * 1 - camera.position.y) * 0.05;
-camera.lookAt(scene.position);
-renderer.render(scene, camera);
-};
-
-animate();
-
-window.addEventListener('resize', () => {
-camera.aspect = window.innerWidth / window.innerHeight;
-camera.updateProjectionMatrix();
-renderer.setSize(window.innerWidth, window.innerHeight);
-});
-</script>
 </body>
 
 </html>
