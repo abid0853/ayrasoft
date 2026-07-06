@@ -708,4 +708,24 @@
     </script>
 </body>
 
+.001;
+sphere.rotation.x += 0.0005;
+particlesMesh.rotation.y = -mouseX * 0.2;
+particlesMesh.rotation.x = -mouseY * 0.2;
+camera.position.x += (mouseX * 1 - camera.position.x) * 0.05;
+camera.position.y += (-mouseY * 1 - camera.position.y) * 0.05;
+camera.lookAt(scene.position);
+renderer.render(scene, camera);
+};
+
+animate();
+
+window.addEventListener('resize', () => {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(window.innerWidth, window.innerHeight);
+});
+</script>
+</body>
+
 </html>
